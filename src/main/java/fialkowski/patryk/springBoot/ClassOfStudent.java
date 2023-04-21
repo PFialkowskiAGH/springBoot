@@ -181,4 +181,23 @@ public class ClassOfStudent {
         if (msg.isEmpty() && !searchedStudentLastname.equals(lastname)) removeStudent(searchedStudentLastname);
         return msg;
     }
+    boolean isStudentExist(String searchedLastname)
+    {
+        Student searchedStudent = new Student(searchedLastname);
+        boolean isExist = false;
+        for(Student student : students)
+        {
+            if (searchedStudent.compare(student)) isExist = true;
+        }
+        return isExist;
+    }
+    String getStudentPoints(String lastname)
+    {
+        if(isStudentExist(lastname))
+        {
+            Student searchedStudent = search(lastname);
+            return Double.toString(searchedStudent.numberOfPoint);
+        }
+        else return "Get grade failed. Student with this lastname doesnt exist";
+    }
 }

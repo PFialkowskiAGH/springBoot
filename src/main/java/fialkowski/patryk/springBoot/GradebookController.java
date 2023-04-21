@@ -2,6 +2,8 @@ package fialkowski.patryk.springBoot;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class GradebookController
@@ -28,7 +30,7 @@ public class GradebookController
                     new Student(firstname, lastname, condition, birthYear, points, address)
             );
         }
-        else return "This class of studnet not exist";
+        else return "This class of student not exist";
     }
     @RequestMapping("/student/{className}/{lastname}")
     public String deleteStudent(
@@ -40,12 +42,23 @@ public class GradebookController
         {
             return getClass(className).removeStudent(lastname);
         }
-        else return "This class of studnet not exist";
+        else return "This class of student not exist";
     }
+    @GetMapping("/student/{className}/{lastname}/grade")
+    public String getPointsOfStudent(
+            @PathVariable String className,
+            @PathVariable String lastname
+    )
+    {
+        if(isClassExist(className))
+        {
+            return getClass(className).getStudentPoints(lastname);
+        }
+        else return "This class of student not exist";
+    }
+
     boolean isClassExist(String className) {
-        if (agh.mapOfClasses.containsKey(className)) {
-            return true;
-        } else return false;
+        return agh.mapOfClasses.containsKey(className);
     }
     ClassOfStudent getClass(String className) {
         return agh.mapOfClasses.get(className);
