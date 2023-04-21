@@ -200,4 +200,14 @@ public class ClassOfStudent {
         }
         else return "Get grade failed. Student with this lastname doesnt exist";
     }
+
+    List<Student> getAllStudents()
+    {
+        List<Student> students = new ArrayList<Student>();
+        for (Student student : students)
+        {
+            students.add(student);
+        }
+        return students;
+    }
 }

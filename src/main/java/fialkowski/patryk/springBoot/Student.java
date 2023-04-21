@@ -40,5 +40,11 @@ public class Student implements Comparable{
         if (this.lastName.equals(comparedStudent.lastName)) return true;
         else return false;
     }
+    public String getLastName() {return this.lastName;};
+    public String getFirstName() {return this.firstName;};
+    public String getStudentAddress() {return this.studentAddress;};
+    public String getStudentCondition() {return this.studentCondition.toString();};
+    public String getBirthYear() {return Integer.toString(this.birthYear);};
+    public String getNumberOfPoint() {return Double.toString(this.numberOfPoint);};
 }
 

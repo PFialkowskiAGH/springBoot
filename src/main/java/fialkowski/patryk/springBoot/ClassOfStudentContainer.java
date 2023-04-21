@@ -2,6 +2,7 @@ package fialkowski.patryk.springBoot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ClassOfStudentContainer {
     String nameContainer;
@@ -89,5 +90,17 @@ public class ClassOfStudentContainer {
             addClass(classOfStudent.className, classOfStudent);
             return "";
         }
+    }
+    List<Student> getAllStudents()
+    {
+        List<Student> students = new ArrayList<Student>();
+        mapOfClasses.forEach((key, value) ->
+        {
+            for (Student student : value.students)
+            {
+                students.add(student);
+            }
+        });
+        return students;
     }
 }
