@@ -56,7 +56,17 @@ public class GradebookController
         }
         else return "This class of student not exist";
     }
-
+    @GetMapping("/student/csv")
+    String getStudentsCSV(String className)
+    {
+        StringBuilder students = (new StringBuilder());
+        agh.mapOfClasses.forEach((key, value) ->
+        {
+            students.append(key);
+            students.append(value.summary());
+        });
+        return String.valueOf(students);
+    }
     boolean isClassExist(String className) {
         return agh.mapOfClasses.containsKey(className);
     }
