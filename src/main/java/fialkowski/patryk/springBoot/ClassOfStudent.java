@@ -28,7 +28,7 @@ public class ClassOfStudent {
             if (!isExist) {
                 students.add(student);
                 System.out.println("Dodano studenta do klasy\n");
-                message = "Dodano studenta do klasy";
+                message = "Add student successfully";
             }
             else
             {
@@ -166,7 +166,7 @@ public class ClassOfStudent {
         }
         if(isExist)
         {
-            message = "";
+            message = "Delete student successfully";
             this.students.remove(removedStudent);
         }
         else message = "Delete failed. Student with this lastname doesnt exist";

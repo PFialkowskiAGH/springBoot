@@ -10,24 +10,47 @@ public class GradebookController
     @GetMapping("/message")
     public String getMessage() {return "STRINGI WYŚWIETLA, JESZCZE CAŁA RESZTA PROJEKTU I FAJRANCIK";}
 
-    //student?className=2j&firstName=Jan&lastName=Kiepa&condition=Obecny&birthYear=2000&points=4.5&address=Kalwarysjka5
+    //student?className=2j&firstname=Jan&lastname=Kiepa&condition=Obecny&birthYear=2000&points=4.5&address=Kalwarysjka5
     @RequestMapping("/student")
     public String addStudent(
             @RequestParam String className,
-            @RequestParam String firstName,
-            @RequestParam String lastName,
+            @RequestParam String firstname,
+            @RequestParam String lastname,
             @RequestParam StudentCondition condition,
             @RequestParam int birthYear,
             @RequestParam double points,
             @RequestParam String address
     )
     {
-        if(agh.mapOfClasses.containsKey(className))
+        if(isClassExist(className))
         {
-            return agh.mapOfClasses.get(className).addStudent(
-                    new Student(firstName, lastName, condition, birthYear, points, address)
+            return getClass(className).addStudent(
+                    new Student(firstname, lastname, condition, birthYear, points, address)
             );
         }
-        else return "Klasa nie istnieje";
+        else return "This class of studnet not exist";
+    }
+    @RequestMapping("/student/{className}/{lastname}")
+    public String deleteStudent(
+            @PathVariable String className,
+            @PathVariable String lastname
+    )
+    {
+        if(isClassExist(className))
+        {
+            return getClass(className).removeStudent(lastname);
+        }
+        else return "This class of studnet not exist";
+    }
+    boolean isClassExist(String className) {
+        if (agh.mapOfClasses.containsKey(className)) {
+            return true;
+        } else return false;
+    }
+    ClassOfStudent getClass(String className) {
+        return agh.mapOfClasses.get(className);
     }
 }
+
+
+
