@@ -28,7 +28,7 @@ public class ClassOfStudent {
             if (!isExist) {
                 students.add(student);
                 System.out.println("Dodano studenta do klasy\n");
-                message = "";
+                message = "Dodano studenta do klasy";
             }
             else
             {
