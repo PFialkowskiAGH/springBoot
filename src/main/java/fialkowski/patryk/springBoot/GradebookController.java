@@ -66,7 +66,7 @@ public class GradebookController
         else return "This class of student not exist";
     }
     @GetMapping("/student/csv")
-    void getStudentsCSV(HttpServletResponse response) throws IOException
+    public void getStudentsCSV(HttpServletResponse response) throws IOException
     {
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -97,7 +97,31 @@ public class GradebookController
 //        else return "This class of student not exist";
 //
 //    }
-
+    @GetMapping("/course")
+    public String getAllClassNames()
+    {
+        return agh.getAllClassNames().toString();
+    }
+    @RequestMapping("/course/add")
+    public String addClassOfStudents(@RequestParam String className, @RequestParam int max)
+    {
+        return agh.addEmptyClass(className, max);
+    }
+    @RequestMapping("/course/{className}")
+    public String deleteClassOfStudents(@PathVariable String className)
+    {
+        return agh.removeClass(className);
+    }
+    @GetMapping("/course/{className}/students")
+    public String summaryClassOfStudents(@PathVariable String className)
+    {
+        return getClass(className).summary();
+    }
+    @GetMapping("/course/{className}/fill")
+    public String getClassOfStudentsPercentages(@PathVariable String className)
+    {
+        return getClass(className).getPercentages();
+    }
     private void getCSV(HttpServletResponse response, List<Student> listStudents) throws IOException {
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
         String[] csvHeader = {"Firstname", "Lastname", "Condition", "BirthYear", "Points", "Address"};

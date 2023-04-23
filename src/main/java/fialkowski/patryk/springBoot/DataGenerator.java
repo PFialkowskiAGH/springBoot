@@ -11,7 +11,7 @@ public class DataGenerator
     ClassOfStudentContainer container = new ClassOfStudentContainer();
     public DataGenerator()
     {
-        int numberOfClass = getRandomInteger(10, 1);
+        int numberOfClass = getRandomInteger(10, 3);
         for (int i = 1; i <= numberOfClass; i++)
         {
             ClassOfStudent generatedClass = generateClass(i);
@@ -20,7 +20,7 @@ public class DataGenerator
     }
     ClassOfStudent generateClass(Integer i)
     {
-        int max = getRandomInteger(10, 1);
+        int max = getRandomInteger(10, 3);
         int classLetter = getRandomInteger(10, 1);
         ClassOfStudent classOfStudent = new ClassOfStudent(i.toString() + classes[classLetter], new ArrayList<>(), max);
         int numberOfStudents = max/2;

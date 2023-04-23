@@ -21,16 +21,30 @@ public class ClassOfStudentContainer {
         }
         return message;
     }
+    String addEmptyClass(String className, int maxNumberOfStudent)
+    {
+        String message;
+        if (mapOfClasses.containsKey(className)) {
+            System.out.println("Taka klasa jest już w kontenerze");
+            message = "This class is already in container";
+        } else {
+            ClassOfStudent newClassOfStudent = new ClassOfStudent(className, new ArrayList<Student>(),maxNumberOfStudent);
+            mapOfClasses.put(className, newClassOfStudent);
+            System.out.printf("Dodano klasę %s do konetenera%n", className);
+            message = "Class addded succesfully";
+        }
+        return message;
+    }
 
     String removeClass(String className) {
         String message;
         if (mapOfClasses.containsKey(className)) {
             mapOfClasses.remove(className);
             System.out.println("Usunięto klasę z konetenra");
-            message = "";
+            message = "Class removed sucessfully";
         } else {
             System.out.println("Taka klasa nie jest w kontenerze");
-            message = "This class isnt in container";
+            message = "This class not exist in container";
         }
         return message;
     }
@@ -102,5 +116,14 @@ public class ClassOfStudentContainer {
             }
         });
         return students;
+    }
+    StringBuilder getAllClassNames()
+    {
+        StringBuilder classNames= new StringBuilder();
+        mapOfClasses.forEach((key, value) ->
+        {
+            classNames.append(key + "\n");
+        });
+        return classNames;
     }
 }

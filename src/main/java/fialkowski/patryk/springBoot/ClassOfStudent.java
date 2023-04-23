@@ -200,7 +200,6 @@ public class ClassOfStudent {
         }
         else return "Get grade failed. Student with this lastname doesnt exist";
     }
-
     List<Student> getAllStudents()
     {
         List<Student> students = new ArrayList<Student>();
@@ -210,4 +209,9 @@ public class ClassOfStudent {
         }
         return students;
     }
+    String getPercentages()
+    {
+        return Float.toString(((float) students.size()) / maxNumberOfStudents);
+    }
+
 }
