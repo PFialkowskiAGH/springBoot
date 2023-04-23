@@ -213,5 +213,4 @@ public class ClassOfStudent {
     {
         return Float.toString(((float) students.size()) / maxNumberOfStudents);
     }
-
 }

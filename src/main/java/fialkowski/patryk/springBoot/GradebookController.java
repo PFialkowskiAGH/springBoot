@@ -133,6 +133,15 @@ public class GradebookController
         }
         csvWriter.close();
     }
+//    @ExceptionHandler(NoSuchElementFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public ResponseEntity<String> handleNoSuchElementFoundException(
+//            NoSuchElementFoundException exception
+//    ) {
+//        return ResponseEntity
+//                .status(HttpStatus.NOT_FOUND)
+//                .body(exception.getMessage());
+//    }
 
     boolean isClassExist(String className) {
         return agh.mapOfClasses.containsKey(className);
