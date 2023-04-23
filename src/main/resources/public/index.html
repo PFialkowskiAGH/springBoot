@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot</title>
+    <link rel="stylesheet" href="mainStyles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log("Hello, World! We are using jQuery from local machine");
+        });
+        $("deleteClassButton").click(function() {
+            let path = "/api/course/" + $("deleteClassName").val();
+            $("deleteClassForm").attr("action", "path");
+        });
+    </script>
+</head>
+<body>
+    <h1>Hello, this is simple main page to test spring boot mapping endpoint</h1>
+    <div>
+        <a href="api/message"><button>First message endpoint</button></a>
+        <a href="api/student/csv"><button>Generate csv of all student</button></a>
+        <a href="api/course"><button>Get all Class Names</button></a>
+    </div>
+    <div>
+        <form id="deleteClassForm" action='/api/course/'>
+            <label>Class to delete: <input id='deleteClassName' type="text"/></label>
+            <input id="deleteClassButton" type="submit" value="Delete"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+</body>
+</html>
