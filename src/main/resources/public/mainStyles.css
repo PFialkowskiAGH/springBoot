@@ -10,9 +10,17 @@ h1{
 }
 div{
     color: aliceblue;
+    border: 7px dotted green;
+    padding: 10px;
+    margin: 6px;
 }
 button{
     border: 2px white solid;
     color: white;
     background-color: black;
+}
+form input {
+    margin: 2px;
+    border: white 2px solid;
+    color: black;
 }

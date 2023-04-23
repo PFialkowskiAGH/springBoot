@@ -3,29 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Boot</title>
-    <link rel="stylesheet" href="mainStyles.css">
+    <link rel="stylesheet" href="/mainStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            console.log("Hello, World! We are using jQuery from local machine");
-        });
-        $("deleteClassButton").click(function() {
-            let path = "/api/course/" + $("deleteClassName").val();
-            $("deleteClassForm").attr("action", "path");
+            console.log("Hello, World! We are using jQuery");
+            $('#deleteClassButton').click(function() {
+                let path = "/api/course/" + $("#deleteClassName").val();
+                $("#deleteClassForm").attr("action", path);
+            });
+            $('#getStudentsClassButton').click(function() {
+                let path = "/api/course/" + $("#getStudentsClassName").val() + "/students";
+                $("#getStudentsClassForm").attr("action", path);
+            });
+            $('#getFillClassButton').click(function() {
+                let path = "/api/course/" + $("#getFillClassName").val() + "/fill";
+                $("#getFillClassForm").attr("action", path);
+            });
+            $('#deleteStudentButton').click(function() {
+                let path = "/api/student/" + $("#deleteStudentClassName").val() + "/" + $("#deleteStudentLastname").val();
+                $("#deleteStudentForm").attr("action", path);
+            });
+            $('#getPointsStudentButton').click(function() {
+                let path = "/api/student/" + $("#getPointsStudentClassName").val() + "/" + $("#getPointStudentLastname").val() + "/grade";
+                $("#getPointsStudentForm").attr("action", path);
+            });
         });
     </script>
 </head>
 <body>
-    <h1>Hello, this is simple main page to test spring boot mapping endpoint</h1>
+    <h1>Hello, this is simple main page to test spring boot mapping endpoint using HTML Form and jQuery</h1>
     <div>
         <a href="api/message"><button>First message endpoint</button></a>
         <a href="api/student/csv"><button>Generate csv of all student</button></a>
         <a href="api/course"><button>Get all Class Names</button></a>
     </div>
     <div>
+        <form id="addClassForm" action='/api/course/add'>
+            <label>Class name: <input id='addClassName' name="className" type="text"/></label>
+            <label>Max number of Students: <input id='addClassMax' name="max" type="text"/></label>
+            <input id="addClassButton" type="submit" value="Add"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
         <form id="deleteClassForm" action='/api/course/'>
             <label>Class to delete: <input id='deleteClassName' type="text"/></label>
             <input id="deleteClassButton" type="submit" value="Delete"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
+        <form id="getStudentsClassForm" action='api/course/{className}/students'>
+            <label>Students of Class: <input id='getStudentsClassName' type="text"/></label>
+            <input id="getStudentsClassButton" type="submit" value="GetStudents"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
+        <form id="getFillClassForm" action='api/course/{className}/fill'>
+            <label>Percentage fill of Class: <input id='getFillClassName' type="text"/></label>
+            <input id="getFillClassButton" type="submit" value="GetFill"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
+        <form id="addStudentForm" action='api/student'>
+            <label>Student's class: <input id='addStudentClassName' name='className' type="text"/></label>
+            <br/>
+            <label>Student's firstname: <input id='addStudentFirstname' name='firstname' type="text"/></label>
+            <br/>
+            <label>Student's lastname: <input id='addStudentLastname' name='lastname' type="text"/></label>
+            <br/>
+            <label>Student's condition: <input id='addStudentCondition' name='condition' type="text"/></label>
+            <br/>
+            <label>Student's birth year: <input id='addStudentBirthYear' name='birthYear' type="text"/></label>
+            <br/>
+            <label>Student's points: <input id='addStudentPoints' name='points' type="text"/></label>
+            <br/>
+            <label>Student's address: <input id='addStudentAddress' name='address' type="text"/></label>
+            <br/>
+            <input id="addStudentButton" type="submit" value="Add Student"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
+        <form id="deleteStudentForm" action='api/student/{className}/{lastname}'>
+            <label>Student's class: <input id='deleteStudentClassName' type="text"/></label>
+            <label>Student's lastname: <input id='deleteStudentLastname' type="text"/></label>
+            <input id="deleteStudentButton" type="submit" value="Delete Student"/>
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+    <div>
+        <form id="getPointsStudentForm" action='api/student/{className}/{lastname}/grade'>
+            <label>Student's class: <input id='getPointsStudentClassName' type="text"/></label>
+            <label>Student's lastname: <input id='getPointStudentLastname' type="text"/></label>
+            <input id="getPointsStudentButton" type="submit" value="Get points of Student"/>
             <input type="reset" value="Reset"/>
         </form>
     </div>
